@@ -1,6 +1,6 @@
 package com.cooksys.ftd.assignments.control;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+//import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * The Fibonacci sequence is simply and recursively defined: the first two elements are `1`, and
@@ -24,7 +24,15 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given index is less than zero
      */
     public static int atIndex(int i) throws IllegalArgumentException {
-        throw new NotImplementedException();
+    	if(i >= 0) {
+    		int [] fib = fibonacci(i + 1);
+    		
+    		return fib[i];
+    	} else {
+    		throw new IllegalArgumentException();
+    	}
+    	
+    	
     }
 
     /**
@@ -38,7 +46,33 @@ public class Fibonacci {
      *                                  given end is less than the given start
      */
     public static int[] slice(int start, int end) throws IllegalArgumentException {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+    	
+    	if(start < 0 || end < 0 || end < start) {
+    		throw new IllegalArgumentException();
+    	} else {
+    		int[] fib = fibonacci(end + 1);
+    		
+    		int length = (end - start);
+    		    		
+    		if(start == 0 && end == 0) {
+    			length = 0;
+    		}
+    		
+    		int[] returnValue = new int[length];
+    		
+    		int pos = start;
+    		int returnPos = 0;
+    		
+    		while (pos < end) {
+    			returnValue[returnPos] = fib[pos];
+    			//System.out.println(fib[pos]);
+    			pos++;
+    			returnPos++;
+    		}
+    		
+    		return returnValue;
+    	}
     }
 
     /**
@@ -49,6 +83,38 @@ public class Fibonacci {
      * @throws IllegalArgumentException if the given count is negative
      */
     public static int[] fibonacci(int count) throws IllegalArgumentException {
-        throw new NotImplementedException();
+       // throw new NotImplementedException();
+    	//System.out.println("Generating fibonacci sequence with a length of " + count);
+    	
+    	if(count >= 0) {
+    		int[] fib = new int[count];
+    		int pos = 0;
+    		
+    		if(fib.length >= 1) {
+	    		fib[0] = 1;
+	    		//System.out.print(fib[0] + ", ");
+	    		pos++;
+    		}
+    		
+    		if(fib.length >= 2) {
+    			fib[1] = 1;
+    			//System.out.print(fib[1] + ", ");
+    			pos++;
+    		}
+    		
+    		while(pos <= count - 1) {
+    			fib[pos] = fib[pos - 1] + fib[pos - 2];
+    			//System.out.print(fib[pos] + ", ");
+    			pos++;
+    		}
+    		
+    		//System.out.println(" ");
+    		
+    		return fib;
+    		
+    	} else {
+    		throw new IllegalArgumentException();
+    	}
+ 
     }
 }
